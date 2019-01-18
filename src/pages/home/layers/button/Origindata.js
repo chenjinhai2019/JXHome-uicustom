@@ -5,7 +5,11 @@ export class Origindata {
         this.id = null;
         this.type = 'submit';
         this.animate = [];
-        this.data = '提交';
+        this.data = {
+            buttonValue: '提交',
+            visible: 'none',
+            color: '#F8F8FF'
+        };
         this.estyle = {
             background: '#548B54',
             color: '#F8F8FF'

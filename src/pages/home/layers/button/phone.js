@@ -3,7 +3,7 @@ import './phone.less';
 import { H5DSComponent } from '../plusClasses.js';
 
 // 手机端执行
-export default class PhoneDom2 extends H5DSComponent {
+export default class PhoneDom extends H5DSComponent {
     static type = 'submit';
 
     constructor(props) {
