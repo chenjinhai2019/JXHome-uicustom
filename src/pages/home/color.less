@@ -23,3 +23,48 @@
 @colorDanger: #ff3535;
 @hoverDanger: #ff3535;
 @boxShadow: 0 0 10px rgba(0, 0, 0, .3);
+
+
+.h5ds-util-color {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    background: #fff;
+}
+.h5ds-util-color::after,
+.h5ds-util-color::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #ccc;
+    position: absolute;
+}
+.h5ds-util-color::after {
+    top: 0;
+    left: 0;
+    border-top-left-radius: 2px;
+}
+.h5ds-util-color::before {
+    top: 12px;
+    left: 12px;
+    border-bottom-right-radius: 2px;
+}
+.h5ds-util-color-btn {
+    position: relative;
+    z-index: 100;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+.h5ds-util-color-box {
+    position: absolute;
+    z-index: 100;
+}
