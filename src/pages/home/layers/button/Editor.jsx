@@ -16,24 +16,6 @@ export default class Editor extends Component {
             data: props.layer.data
         };
     }
-
-    componentDidMount() {
-        document.addEventListener('click', this.hideAllMenu);
-    }
-
-    hideAllMenu = () => {
-        this.setState({
-            data: {
-                visible: 'none',
-                buttonValue: this.state.data.buttonValue,
-                color: this.state.data.color
-            }
-        })
-    }
-    stopPropagation(e) {
-        e.nativeEvent.stopImmediatePropagation();
-    }
-
     handleChangeComplete = (color) => {
         console.log('handleChangeComplete',color.hex);
         this.props.layer.estyle.color = color.hex;
@@ -49,10 +31,7 @@ export default class Editor extends Component {
         $(document).trigger('h5ds.setHistory');
     };
 
-
-
-    showModal = (e) => {
-        this.stopPropagation(e);
+    handleonmousedown = () => {
         this.setState({
             data: {
                 visible: this.state.data.visible==='none'?'':'none',
@@ -61,9 +40,18 @@ export default class Editor extends Component {
             }
         });
     }
-    changeTextArea = e => {
-        this.stopPropagation(e);
 
+    showModal = () => {
+        this.setState({
+            data: {
+                visible: this.state.data.visible==='none'?'':'none',
+                buttonValue: this.state.data.buttonValue,
+                color: this.state.data.color
+            }
+        });
+        console.log('visible',this.state.data.visible);
+    }
+    changeTextArea = e => {
         this.setState({
             data: {
                 visible: this.state.data.visible,
@@ -81,13 +69,9 @@ export default class Editor extends Component {
     }, 500);
 
     render() {
-        /*return <div style={{display: 'none'}}>
-            <div></div>
-        </div>;*/
-        //return <SketchPicker />;
         const { data } = this.state;
         return (
-            <div className="ex-set-submit">
+            <div className="ex-set-submit" >
                 <div className="h5ds-layout-setgrid h5ds-layout-setgrid-1">
                     <div className="h5ds-layout-setitem ">
                         <div className="h5ds-layout-setitem-name">按钮文字</div>
@@ -104,7 +88,7 @@ export default class Editor extends Component {
                             <div className="h5ds-layout-setitem-content">
                                 <div className="h5ds-util-color">
                                     <span onClick={this.showModal} className="h5ds-util-color-btn" style={{backgroundColor:data.color}}></span>
-                                    <div className="h5ds-util-color-box"  style={{zIndex:9999, display: data.visible}}>
+                                    <div  className="h5ds-util-color-box" style={{zIndex:9999, display: data.visible}}>
                                             <SketchPicker color={ data.color }
                                                           onChangeComplete={ this.handleChangeComplete } />
                                     </div>
@@ -113,6 +97,8 @@ export default class Editor extends Component {
                         </div>
                     </div>
                 </div>
+
+                <div className="color-shade" style={{display: data.visible}} onMouseDown={this.handleonmousedown}></div>
             </div>
         );
     }
